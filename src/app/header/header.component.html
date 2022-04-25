@@ -1,0 +1,18 @@
+<!-- Note: header and nav HTML tags do add extra code,
+   but they are good for sectioning & screen readers -->
+<header class="header">
+  <h1>
+    <span class="dynamic-title" *ngFor="let char of titleAsArray">{{
+      char | uppercase
+    }}</span>
+  </h1>
+
+  <!-- Navigation links -->
+  <nav>
+    <ul>
+      <li *ngFor="let tab of tabs">
+        <a id="tab" [routerLink]="tab.link">{{ tab.name | uppercase }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>

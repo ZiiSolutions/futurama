@@ -1,0 +1,122 @@
+@import "media-queries";
+@import "common";
+@import "font-classes";
+
+.header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+  background: $green;
+  padding: 25px 8px;
+
+  @include respond-above(xs) {
+    align-items: center;
+    padding: 25px 24px 25px 12px;
+  }
+
+  @include respond-above(lg) {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+.header::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  z-index: 10;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: inherit;
+  transform: translateX(-50%) translateY(50%);
+  bottom: 0px;
+}
+
+// Style title
+h1 {
+  margin: 0;
+  text-align: center;
+  z-index: 30;
+
+  .dynamic-title {
+    @extend .heading-1;
+    display: inline-block;
+    text-align: center;
+    margin: 8px;
+    padding: 6px 18px;
+    background: $purple;
+    color: $white;
+    animation: zoom-in-zoom-out 1s ease infinite;
+    border-radius: 3px;
+  }
+
+  .dynamic-title:nth-child(even) {
+    background-color: $orange;
+  }
+
+  @keyframes zoom-in-zoom-out {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1.1, 1.1);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+}
+
+// Style tabs
+nav {
+  z-index: 30;
+  ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+
+    @include respond-above(xs) {
+      flex-direction: row;
+    }
+
+    @include respond-above(lg) {
+      margin: 0;
+    }
+
+    li {
+      display: inline-block;
+      border-radius: 5px;
+      border: 8px solid $orange;
+      padding: 12px;
+      transition: border 0.3s ease-in;
+      text-align: center;
+
+      @include respond-above(xs) {
+        border: 12px solid $orange;
+      }
+    }
+    li:nth-child(2) {
+      margin-top: 15px;
+
+      @include respond-above(xs) {
+        margin-top: 0;
+        margin-left: 50px;
+      }
+    }
+    li:hover {
+      @include respond-above(xs) {
+        border: 12px solid $yellow;
+      }
+    }
+
+    #tab {
+      @extend .heading-1;
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}

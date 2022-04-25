@@ -1,0 +1,23 @@
+<ng-container *ngIf="!errorMessage && (data | async) as item">
+  <!-- Series description -->
+  <section id="description-container">
+    <p class="description">{{ item.synopsis }}</p>
+  </section>
+  <!-- Author detail & years aired -->
+  <section id="author-container">
+    <h1 class="years-aired ">Years Aired {{ item.yearsAired }}</h1>
+
+    <ul>
+      <li *ngFor="let creator of item.creators" class="author-description">
+        <p>{{ creator.name }}</p>
+        <a [href]="creator.url" class="link">{{
+          "( " + "IMDB: " + creator.url + " )"
+        }}</a>
+      </li>
+    </ul>
+  </section>
+</ng-container>
+
+<!-- <section *ngIf="!errorMessage && (data | async) as item">
+  <p id="description">{{ item.synopsis }}</p>
+</section> -->
