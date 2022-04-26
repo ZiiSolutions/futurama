@@ -8,14 +8,21 @@
 @import "common";
 @import "font-classes";
 
+html,
+body {
+  height: 100%;
+  background-color: $pink;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
 
 html,
 body {
   height: 100%;
-  background-color: $orange;
 }
 body {
-  font-family: $nimbus-sans;
   margin: 0;
-  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

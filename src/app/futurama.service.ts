@@ -1,8 +1,16 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, Subject, throwError } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import {
+  catchError,
+  map,
+  Observable,
+  Subject,
+  throwError,
+  withLatestFrom,
+} from 'rxjs';
 import { AppConfigService } from './app-config.service';
-import { InfoDetail } from './app-interfaces';
+import { CharacterDetail, InfoDetail } from './app-interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +35,34 @@ export class FuturamaService {
           return res[0];
         })
       );
+  }
+
+  fecthCharacters(): Observable<CharacterDetail[]> {
+    return this.httpClient
+      .get<CharacterDetail[]>(`${this.appConfig.apiBaseUrl}/characters`)
+      .pipe(
+        catchError((err) => throwError(() => this.retrieveErrorMessage(err))),
+        map((res) => {
+          // Display an error when server returns an empty array. This is an edge case, but
+          // good to capture it.
+          !res.length && throwError(() => 'Server returned an empty response');
+          return res;
+        })
+      );
+  }
+
+  fecthCharacter(id: string): Observable<CharacterDetail | undefined> {
+    return this.fecthCharacters().pipe(
+      map((characters) => {
+        const character = characters.find(
+          (character) => character.id === Number(id)
+        );
+
+        // Edge case when the character doesn't exit throw error
+        !character && throwError(() => 'Oops could not find character');
+        return character;
+      })
+    );
   }
 
   get errorMessage(): Observable<string> {

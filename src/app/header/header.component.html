@@ -1,7 +1,7 @@
 <!-- Note: header and nav HTML tags do add extra code,
    but they are good for sectioning & screen readers -->
 <header class="header">
-  <h1>
+  <h1 routerLink="/home">
     <span class="dynamic-title" *ngFor="let char of titleAsArray">{{
       char | uppercase
     }}</span>
