@@ -1,0 +1,47 @@
+@import "media-queries";
+@import "common";
+@import "font-classes";
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .characters-container {
+    display: inline-grid;
+    grid-template-columns: 320px;
+    column-gap: 40px;
+    row-gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 70px 0 40px 0;
+
+    @include respond-above(sm) {
+      grid-template-columns: repeat(2, 320px);
+    }
+
+    @include respond-above(lg) {
+      grid-template-columns: repeat(3, 320px);
+      column-gap: 60px;
+    }
+
+    mat-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 490px;
+      color: $green;
+    }
+
+    mat-card-title,
+    .read-more-button {
+      font-family: $nimbus-cond-l;
+      font-weight: 600;
+      color: $green;
+    }
+
+    .character-image {
+      height: 400px;
+    }
+  }
+}

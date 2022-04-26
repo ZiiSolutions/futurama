@@ -1,0 +1,49 @@
+<section
+  *ngIf="!errorMessage && (data$ | async) as character; else errorMsgTemplate"
+>
+  <mat-card>
+    <!-- Title (name) -->
+    <mat-card-header>
+      <mat-card-title-group>
+        <img
+          mat-card-image
+          class="character-image"
+          [src]="character.images.main"
+          [alt]="composeImageAltText(character.name)"
+        />
+      </mat-card-title-group>
+    </mat-card-header>
+    <!-- Content -->
+    <mat-card-content>
+      <p class="character-info">
+        <span>Name: </span>{{ composeName(character.name) }}
+      </p>
+      <p class="character-info"><span>Gender: </span>{{ character.gender }}</p>
+      <p class="character-info">
+        <span>Species: </span>{{ character.species }}
+      </p>
+      <p class="character-info">
+        <span>Home Planet: </span>{{ character.homePlanet }}
+      </p>
+      <p class="character-info">
+        <span>Occupation: </span>{{ character.occupation }}
+      </p>
+    </mat-card-content>
+    <mat-card-content> </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Sayings</mat-card-title>
+    <mat-card-content>
+      <blockquote *ngFor="let saying of composeSayings(character)">
+        <p class="quote-text">{{ saying }}</p>
+      </blockquote>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<ng-template #errorMsgTemplate>
+  <section class="error-container">
+    <p>{{ errorMessage }}</p>
+  </section>
+</ng-template>

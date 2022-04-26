@@ -1,0 +1,79 @@
+@import "media-queries";
+@import "common";
+@import "font-classes";
+
+.common-text {
+  word-break: break-word;
+  white-space: normal;
+  color: $green;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 60px 25px 30px 20px;
+
+  @include respond-above(xs) {
+    flex-direction: row;
+    padding: 60px 14px 30px 14px;
+  }
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    height: fit-content;
+    width: 100%;
+    margin-top: 30px;
+
+    @include respond-above(xs) {
+      max-width: 600px;
+    }
+  }
+
+  mat-card:nth-child(2) {
+    @include respond-above(xs) {
+      margin-left: 30px;
+    }
+  }
+
+  img {
+    max-height: 420px;
+  }
+
+  blockquote {
+    margin: 33px 10px;
+
+    .quote-text {
+      @extend .body;
+      @extend .common-text;
+      text-align: center;
+      word-break: break-all;
+      white-space: normal;
+      color: $green;
+    }
+    .quote-text::before {
+      content: '" ';
+      color: $rose-pink;
+    }
+
+    .quote-text::after {
+      content: ' "';
+      color: $rose-pink;
+    }
+  }
+
+  .character-info {
+    @extend .body;
+    @extend .common-text;
+    word-break: break-all;
+    white-space: normal;
+    span {
+      font-weight: 600;
+    }
+  }
+}
